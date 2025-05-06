@@ -1,1 +1,19 @@
+%{
+#include <stdio.h>
 
+int yywrap(void) {
+    return 1;
+}
+%}
+
+%%
+[A-Z]+      { printf("Capital word: %s\n", yytext); }
+.|\n        { /* Ignore all other characters */ }
+%%
+
+int main()
+{
+    printf("Enter the word: ");
+    yylex();
+    return 0;
+}
