@@ -1,0 +1,20 @@
+%{
+#include <stdio.h>
+
+int yywrap(void) {
+    return 1;
+}
+%}
+
+%%
+[0-9]+      { printf("Input is a digit: %s\n", yytext); }
+[a-zA-Z]+   { printf("Input is not a digit: %s\n", yytext); }
+.|\n        { /* Ignore other characters */ }
+%%
+
+int main()
+{
+    printf("Enter the input: ");
+    yylex();
+    return 0;
+}
